@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.1.6.RELEASE</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+<!--    groupId是指定项目的组织标识-->
+    <groupId>com.xq.tmall</groupId>
+<!--    artifactId指定了项目的唯一标识符-->
+    <artifactId>TmallDemo</artifactId>
+<!--    version指定版本号-->
+    <version>0.0.1-SNAPSHOT</version>
+    <name>TmallDemo</name>
+<!--    description用于提供关于项目的简短描述-->
+    <description>Demo project for Spring Boot</description>
+<!--properties用于定义项目的属性和变量-->
+    <properties>
+<!--        指定项目源代码的编码格式为UTF-8-->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+<!--        指定项目报告输出的编码格式为utf-8-->
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <java.version>1.8</java.version>
+<!--        指定项目的入口类，及SpringBoot应用类的主类-->
+        <start-class>com.xq.tmall.TmallApplication</start-class>
+        <mybatisplus-spring-boot-starter.version>1.0.5</mybatisplus-spring-boot-starter.version>
+        <mybatisplus.version>2.3.1</mybatisplus.version>
+    </properties>
+
+    <dependencies>
+<!--        这个依赖将使得项目能够使用SpringBoot提供的WWeb开发相关的功能和组件-->
+        <dependency>
+<!--            groupId表示依赖的组织标识-->
+            <groupId>org.springframework.boot</groupId>
+<!--            artifactId表示依赖的项目标识符-->
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+<!--        该依赖是一个用于提升开发人员开发体验的工具集，包括自动重启应用程序、热部署等功能。这个依赖可以加速开发过程并提高开发效率-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <scope>runtime</scope>
+<!--            表示该依赖是可选的，可以根据项目的需要进行选择性引入-->
+            <optional>true</optional>
+        </dependency>
+<!--        该依赖提供了一些用于编写和执行测试的模块和库，方便进行单元测试-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <!-- JSTL (JSP standard Tag Library) JSP 标准标签库-->
+       <dependency>
+           <groupId>javax.servlet</groupId>
+           <artifactId>jstl</artifactId>
+       </dependency>
+       <!-- tomcat 依赖包 -->
+<!--        该依赖会引入SpringBoot的嵌入式Tomcat容器-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-tomcat</artifactId>
+            <scope>provided</scope>
+        </dependency>
+<!--        该依赖是用于支持JSP的Tomcat嵌入式组件-->
+        <dependency>
+            <groupId>org.apache.tomcat.embed</groupId>
+            <artifactId>tomcat-embed-jasper</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid</artifactId>
+            <version>1.1.13</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.54</version>
+        </dependency>
+        <!-- swagger2生成api文档 -->
+<!--        该依赖提供了SpringBoot项目集成Swagger的功能，用于生成和展示API文档-->
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>2.9.2</version>
+        </dependency>
+<!--        该依赖提供了将生成的SwaggerAPI文档呈现为可视化界面的功能。-->
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+            <version>2.9.2</version>
+        </dependency>
+
+        <!-- mybatis-plus begin -->
+<!--        该依赖提供了使用JDBC进行数据库操作的功能-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-jdbc</artifactId>
+        </dependency>
+<!--        该依赖提供了将MybatisPlus与SpringBoot集成的功能-->
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatisplus-spring-boot-starter</artifactId>
+            <version>${mybatisplus-spring-boot-starter.version}</version>
+        </dependency>
+<!--        该依赖提供了MybatisPlus框架的核心功能-->
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus</artifactId>
+            <version>${mybatisplus.version}</version>
+        </dependency>
+        <!-- mybatis-plus end -->
+        <!-->lombok<-->
+<!--        该依赖引入Lombok依赖，可以通过注解自动生成一些常见的代码，例如getter和setter-->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+        <!-- commons -->
+<!--        该依赖提供了常用I/O操作功能的Java库，包括文件和流的操作-->
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.6</version>
+        </dependency>
+<!--        该依赖是一个用于处理文件上传的Java组件，可以将上传的文件保存到磁盘或内存中，并提供了一些便捷的API用于操作上传的文件和表单数据-->
+        <dependency>
+            <groupId>commons-fileupload</groupId>
+            <artifactId>commons-fileupload</artifactId>
+            <version>1.3.3</version>
+        </dependency>
+<!--        该依赖是一个通用的日志记录抽象API，它提供了一种简单的方式来记录日志-->
+        <dependency>
+            <groupId>commons-logging</groupId>
+            <artifactId>commons-logging</artifactId>
+            <version>1.2</version>
+        </dependency>
+
+        <!-- Mybatis -->
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis</artifactId>
+            <version>3.4.5</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis-spring</artifactId>
+            <version>1.3.1</version>
+        </dependency>
+
+        <!-- log4j -->
+        <dependency>
+        <groupId>org.apache.logging.log4j</groupId>
+        <artifactId>log4j-core</artifactId>
+        <version>2.10.0</version>
+    </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+            <version>2.10.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+<!--            exclusions用来排除指定的依赖项-->
+            <exclusions>
+                <exclusion>
+                    <groupId>org.junit.vintage</groupId>
+                    <artifactId>junit-vintage-engine</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>junit</groupId>
+                    <artifactId>junit</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+<!--        该依赖是一个用于编写和运行测试的测试框架，是junit5的一部分-->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>RELEASE</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>RELEASE</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <includeSystemScope>true</includeSystemScope>
+                    <fork>true</fork>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+<!--repositories元素配置项目依赖的仓库-->
+    <repositories>
+        <repository>
+            <id>spring-snapshots</id>
+            <name>Spring Snapshots</name>
+            <url>https://repo.spring.io/snapshot</url>
+<!--            snapshots元素指定了启用快照版本的选项-->
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>spring-milestones</id>
+            <name>Spring Milestones</name>
+            <url>https://repo.spring.io/milestone</url>
+        </repository>
+    </repositories>
+<!--    pluginRepositories元素配置了项目使用的插件仓库-->
+    <pluginRepositories>
+        <pluginRepository>
+            <id>spring-snapshots</id>
+            <name>Spring Snapshots</name>
+            <url>https://repo.spring.io/snapshot</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </pluginRepository>
+        <pluginRepository>
+            <id>spring-milestones</id>
+            <name>Spring Milestones</name>
+            <url>https://repo.spring.io/milestone</url>
+        </pluginRepository>
+    </pluginRepositories>
+
+</project>

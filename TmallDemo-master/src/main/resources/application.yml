@@ -1,0 +1,31 @@
+
+TmallDemo:
+  swagger-open: true                #是否开启swagger (true/false)
+  kaptcha-open: false               #是否开启登录时验证码 (true/false)
+  spring-session-open: true        #是否开启spring session,如果是多机环境需要开启(true/false)
+  session-invalidate-time: 1800     #session失效时间(只在单机环境下生效，多机环境在SpringSessionConfig类中配置) 单位：秒
+  session-validation-interval: 900  #多久检测一次失效的session(只在单机环境下生效) 单位：秒
+  muti-datasource-open: true  #开启多数据源
+  file-upload-path: E:/tmall #上传目录
+
+beetl:
+  resource-auto-check: true         #热加载beetl模板，开发时候用
+
+spring:
+  profiles:
+    active: dev       #设置当前的活动配置文件为dev
+  mvc:
+    view:
+      prefix: /WEB-INF/page/      #设置mvc视图的前缀，这意味着在渲染视图时，Spring会从该目录下查找视图文件
+      suffix: .jsp        #设置mvc视图的后缀为.jsp，这里表示Spring会寻找以jsp结尾的试图文件
+      static-path-pattern: /res/*         #设置用于静态资源的URL模式，在这个例子中，所有以“res”开头的url请求部分被映射到静态资源
+  devtools:
+    restart:
+      enabled: false          #禁用开发工具的自动重启功能
+      additional-paths: src/main/java         #当这个路径下的文件发生改变时，开发工具会自动重启应用程序
+      additional-exclude: /res/*        #res开头的文件修改时，排除在外自动重启
+  servlet:
+    multipart:
+      max-request-size: 10MB            #设置在处理multipart请求时允许的最大请求大小为10mb
+      max-file-size: 10MB               #设置允许上传的最大文件大小为10MB
+

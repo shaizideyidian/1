@@ -1,0 +1,130 @@
+#Spring Boot Config
+
+#端口
+server:
+  port: 8082
+  servlet:
+    context-path: /tmall
+
+spring:
+  datasource:
+    #druid基本属性
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/tmall?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF-8&useSSL=false
+    username: root
+    password: 123456
+    #druid相关配置
+    druid:
+      # 配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙
+      filters: stat,wall
+      #配置初始化大小/最小/最大
+      initial-size: 5
+      min-idle: 1
+      max-active: 50
+      #获取连接等待超时时间
+      max-wait: 60000
+      #间隔多久进行一次检测，检测需要关闭的空闲连接
+      time-between-eviction-runs-millis: 60000
+      #一个连接在池中最小生存的时间
+      min-evictable-idle-time-millis: 300000
+#      这个参数用于连接池检测连接是否有效的SQL查询语句，SELECT 1 FROM DUAL通常这是一个简单的查询语句，用于测试数据库连接的可用性
+      validation-query: SELECT 1 FROM DUAL
+#      表示在连接空闲时是否执行连接的验证操作，true表示连接池在连接处于空闲状态时会执行验证操作
+      test-while-idle: true
+#      表示从连接池中获取连接时是否执行连接的验证操作，false表示连接池在获取连接时不会执行验证操作
+      test-on-borrow: false
+#      表示将连接返回到连接池时是否执行连接的验证操作，false表示连接池在返回连接时不会执行验证操作
+      test-on-return: false
+      #打开PSCache，并指定每个连接上PSCache的大小。oracle设为true，mysql设为false。分库分表较多推荐设置为false
+#      指定是否在连接池中启用预编译语句的缓存，在这里的设置为false，表示禁用预编译语句的缓存，预编译语句是一种优化技术，它可以提高数据库查询的性能，但也会占用一定的内存资源，如果设置为false，则每次执行查询都会重新编译SQL语句
+      pool-prepared-statements: false
+#      表示每个数据库连接在连接池中可以缓存的最大预编译语句数量。
+      max-pool-prepared-statement-per-connection-size: 20
+      # 通过connectProperties属性来打开mergeSql功能；慢SQL记录
+    hikari:
+#      表示从连接池中获取连接的超时时间，
+      connection-timeout: 5000
+#      这个参数表示连接在连接池中的最大存活时间
+      max-lifetime: 60000
+  mail:
+#    表示邮件服务器的主机地址
+    host: smtp.163.com
+#    用于发送邮件的邮件的用户名
+    username: fanshuye1304@163.com
+#    用于发送邮件的邮件的邮箱的密码
+    password: fanshuye1304
+  freemarker:
+#    表示模板文件的后缀名
+    suffix: .html
+#    表示在模板中访问请求上下文的属性名称，在这里的设置是request，即可以通过${request}来访问请求上下文的属性
+    request-context-attribute: request
+#    使用的字符编码
+    charset: UTF-8
+  aop:
+#    这个参数指定是否使用CGLIB代理作为AOP的代理方式，而不是默认的基于接口的JDK动态代理，使用CGLIB代理可以在目标对象没有实现接口时生成代理类
+    proxy-target-class: true
+  devtools:
+    restart:
+#      用于禁用或启用Devtools的自动重启功能，代码发生改变时，Devtools会自动重启应用程序
+      enabled: true
+  jackson:
+#    用于配置日期类型在序列化和反序列化的格式
+    date-format: yyyy-MM-dd HH:mm:ss
+#    用于指定日期和时间的时区
+    time-zone: GMT+8
+  servlet:
+    multipart:
+#      用于配置Sevlet的文件上传功能中的最大文件大小限制。
+      max-file-size: 20MB
+
+#MyBatis
+mybatis-plus:
+  mapper-locations: classpath:/mapper/*Mapper.xml
+  #实体扫描，多个package用逗号或者分号分隔
+  typeAliasesPackage: com.xq.tmall.entity;
+  global-config:
+    #主键类型  0:"数据库ID自增", 1:"用户输入ID",2:"全局唯一ID (数字类型唯一ID)", 3:"全局唯一ID UUID";
+    id-type: 0
+    #字段策略 0:"忽略判断",1:"非 NULL 判断"),2:"非空判断"
+    field-strategy: 2
+    #驼峰下划线转换
+    db-column-underline: false
+    #刷新mapper 调试神器
+    refresh-mapper: true
+    #数据库大写下划线转换
+    #capital-mode: true
+    #序列接口实现类配置
+    #key-generator: com.baomidou.springboot.xxx
+    #逻辑删除配置
+    #logic-delete-value: 0
+    #logic-not-delete-value: 1
+    #自定义填充策略接口实现
+    meta-object-handler: com.xq.tmall.config.mybatis.MyMetaObjectHandler
+    #自定义SQL注入器
+    #sql-injector: com.baomidou.springboot.xxx
+  configuration:
+    map-underscore-to-camel-case: false # 开启驼峰命名转换法
+    cache-enabled: true
+    #Mybatis返回null值不显示
+    call-setters-on-nulls: true
+#logging
+logging:
+  level:
+    com.xq.tmall: DEBUG
+  #file: ./logs/xqdjzwwexin-log.log
+
+#短信平台配置
+sms:
+#  表示是否开启短信功能
+  open: true
+#  表示短信服务商的类型，使用互亿无线作为短信服务商
+  sms-type: huyi
+#  表示短信签名
+  sign-name: aa
+#  表示短信服务商的API ID
+  api-id: C68828166
+#  表示短信服务商的API key
+  api-key: e7814b5b690142a8b36bc17bfc4ec8a4
+#  表示短信发送的API类型
+  url: http://106.ihuyi.cn/webservice/sms.php?method=Submit

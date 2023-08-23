@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC 
+"-//mybatis.org//DTD Config 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-config.dtd"> 
+<configuration>
+	<settings>
+	<!-- 给java 对象中的空属性 指定一个jdbc类型 varchar null -->
+<!--		将属性为空的值映射到数据库中为null值-->
+		<setting name="jdbcTypeForNull" value="NULL"/>
+		<!-- 使二级缓存生效 -->
+<!--		开启mybatis的二级缓存，开启二级缓存后，查询结果会被缓存到内存中，从而提高系统的性能和响应速度-->
+		<setting name="cacheEnabled" value="true" /> 
+	</settings>
+<!--	声明了类型别名的定义-->
+	<typeAliases>
+		<!-- 给指定包下所有类起别名 ， 别名为类名，使用时不区分大小写  -->
+		<package name="com.briup.bean"/>
+	</typeAliases>
+	<environments default="development">
+	<!-- 一个environment对应一个数据库的连接信息和事务管理信息 -->
+		<environment id="development">
+		<!-- 事务管理机制 type值 为JDBC  MANAGED -->
+			<transactionManager type="JDBC"></transactionManager>
+			<!-- POOLED   使用连接池维护与数据库建立的连接UNPOOLED-->
+			<dataSource type="POOLED">
+			<!-- driver url username password -->
+				<property name="driver" value="com.mysql.jdbc.Driver"/>
+				<property name="url" value="jdbc:mysql://localhost/estore"/>
+				<property name="username" value="root"/>
+				<property name="password" value="123456"/>
+			</dataSource>
+		</environment>
+		
+	</environments>
+	
+	<mappers>
+		<mapper resource="com/briup/bean/CustomerMapper.xml"/>
+		<mapper resource="com/briup/bean/BookMapper.xml"/>
+		<mapper resource="com/briup/bean/OrderformMapper.xml"/>
+		<mapper resource="com/briup/bean/OrderLineMapper.xml"/>
+	</mappers>
+</configuration>

@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="jspmyg7up:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>jspmyg7up</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="jspmyg7up.war">
+      <element id="artifact" artifact-name="jspmyg7up:war exploded" />
+    </root>
+  </artifact>
+</component>

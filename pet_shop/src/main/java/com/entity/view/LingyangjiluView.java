@@ -1,0 +1,36 @@
+package com.entity.view;
+
+import com.entity.LingyangjiluEntity;
+
+import com.baomidou.mybatisplus.annotations.TableName;
+import org.apache.commons.beanutils.BeanUtils;
+import java.lang.reflect.InvocationTargetException;
+
+import java.io.Serializable;
+ 
+
+/**
+ * 领养记录
+ * 后端返回视图实体辅助类   
+ * （通常后端关联的表或者自定义的字段需要返回使用）
+ * @author 
+ * @email 
+ * @date 2023-03-25 09:47:18
+ */
+@TableName("lingyangjilu")
+public class LingyangjiluView  extends LingyangjiluEntity implements Serializable {
+	private static final long serialVersionUID = 1L;
+
+	public LingyangjiluView(){
+	}
+ 
+ 	public LingyangjiluView(LingyangjiluEntity lingyangjiluEntity){
+ 	try {
+			BeanUtils.copyProperties(this, lingyangjiluEntity);
+		} catch (IllegalAccessException | InvocationTargetException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+ 		
+	}
+}
